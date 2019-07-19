@@ -23,7 +23,7 @@
 ## Author: Yamasaki Shoma <yshoma@localhost.localdomain>
 ## Created: 2019-07-02
 
-function retval = chirp2 (t,f0,f1);
-k = (f1-f0)/10/1000;
-retval=sin(2*pi*(f0+t*k/2)*t);
+function retval = chirp2 (t,f0,f1,len);
+k = (f1-f0)/len;
+retval=sin(2*pi*(f0+t*k/2).*t);
 endfunction

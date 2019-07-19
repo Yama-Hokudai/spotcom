@@ -1,4 +1,4 @@
-## Copyright (C) 2019 Yamasaki Shoma
+## Copyright (C) 2019 Yamasaki SHOMA
 ## 
 ## This program is free software: you can redistribute it and/or modify it
 ## under the terms of the GNU General Public License as published by
@@ -15,14 +15,20 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{retval} =} syncpattern (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} psi (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
-## Author: Yamasaki Shoma <yshoma@localhost.localdomain>
-## Created: 2019-07-11
+## Author: Yamasaki SHOMA <yshoma@localhost.localdomain>
+## Created: 2019-07-18
 
-function retval = syncpattern (f1, f2, t, theta, psi)
-retval = sin(2*pi*f1*t+psi)+sin(2*pi*f2*t+psi+theta);
+function retval = psiList (symNum)
+retval=zeros(1,symNum);
+Sigma=0;
+for k=1:symNum
+  Sigma=Sigma+g(k-1,symNum);
+  retval(k)=2*pi*Sigma/symNum;
+  retval(k)=verifying(retval(k));
+endfor
 endfunction
