@@ -1,0 +1,21 @@
+freq = [18750,19250];
+t1 = -1/1000:1/sampling:1/1000;
+t2 = -1/1000:1/sampling:3/1000;
+
+comsin = [exp(-j*2*pi*freq(1)*t1);exp(-j*2*pi*freq(2)*t1)];
+sync = syncpattern(freq(1),freq(2),t2);
+f0 = 12000;
+f1 = 18000;
+k = (f1 - f0)/10/1000;
+t3 = 0:1/sampling:10/1000;
+Chirp = chirp2(f0,f1,t3);
+
+index = 0;
+recsymbol = [];
+tmp = matchedFilter(Chirp,data(1:6,sampling+index:3*sampling+index));
+[tmp,ind] = sort(abs(tmp),2,"descend");
+index += ind(:,1);
+index += 151*sampling/1000;
+
+arg = zeros(2,1);
+arg(1,1) = 2*j*matchedFilter(comsin(2),data

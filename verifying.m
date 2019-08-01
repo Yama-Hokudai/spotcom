@@ -16,7 +16,7 @@
 
 ## -*- texinfo -*- 
 ## @deftypefn {} {@var{retval} =} verifying (@var{input1}, @var{input2})
-##
+## 
 ## @seealso{}
 ## @end deftypefn
 

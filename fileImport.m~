@@ -1,0 +1,19 @@
+sampling = 48000;
+reclength = 200;
+dirname = '../';
+rootname1 = 'both_0';
+rootname2 = '_';
+coor = [0,50,-50];
+rootname3 = '_50';
+
+extension = '.wav';
+
+data = [];
+for k = 1:3
+	filename = [dirname,rootname1,num2str(k),rootname2,num2str(coor(k)),rootname3,extension];
+  disp(filename);
+	tmp = audioread(filename)(5*48000:205*48000 - 1,1);
+  disp(size(tmp));
+	tmp = tmp';
+	data = [data;	tmp];
+endfor

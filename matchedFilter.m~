@@ -15,34 +15,20 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{retval} =} demodule (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} matchedFilter (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
 ## Author: Yamasaki Shoma <yshoma@localhost.localdomain>
-## Created: 2019-07-12
+## Created: 2019-06-26
 
-function retval = demodule (m, Arg)
-##  retval = pi;
-##  for k = 1:m
-##    if Arg >= -pi - pi/m + 2*(k-1)*pi/m && Arg < -pi + pi/m + 2*(k-1)*pi/m
-##      retval = -pi + 2*(k-1)*pi/m;
-##    endif
-##  endfor
-if Arg < -5*pi/6
-  retval = -pi;
-elseif -5*pi/6 <= Arg && Arg < -pi/2
-  retval = -2*pi/3;
-elseif -pi/2 <= Arg && Arg < -pi/6
-  retval = -pi/3;
-elseif -pi/6 <= Arg && Arg < pi/6
-  retval = 0;
-elseif pi/6 <= Arg && Arg < pi/2
-  retval = pi/3;
-elseif pi/2 <= Arg && Arg < 5*pi/6
-  retval = 2*pi/3;
-else
-  retval = pi;
-endif
+function retval = matchedFilter (kernel, list)
+  retval = zeros(1,length(list) - length(kernel) + 1);
+  for i = 1: length(list) - length(kernel) + 1
+    retval(1,i) = dot(list(i : i + length(kernel) - 1), kernel);
+    if (mod(i,48000) == 0)
+      disp(i);
+    endif
+  endfor
 endfunction

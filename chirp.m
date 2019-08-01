@@ -15,34 +15,14 @@
 ## <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{retval} =} demodule (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} chirp (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
 ## Author: Yamasaki Shoma <yshoma@localhost.localdomain>
-## Created: 2019-07-12
+## Created: 2019-07-02
 
-function retval = demodule (m, Arg)
-##  retval = pi;
-##  for k = 1:m
-##    if Arg >= -pi - pi/m + 2*(k-1)*pi/m && Arg < -pi + pi/m + 2*(k-1)*pi/m
-##      retval = -pi + 2*(k-1)*pi/m;
-##    endif
-##  endfor
-if Arg < -5*pi/6
-  retval = -pi;
-elseif -5*pi/6 <= Arg && Arg < -pi/2
-  retval = -2*pi/3;
-elseif -pi/2 <= Arg && Arg < -pi/6
-  retval = -pi/3;
-elseif -pi/6 <= Arg && Arg < pi/6
-  retval = 0;
-elseif pi/6 <= Arg && Arg < pi/2
-  retval = pi/3;
-elseif pi/2 <= Arg && Arg < 5*pi/6
-  retval = 2*pi/3;
-else
-  retval = pi;
-endif
+function retval = chirp (t)
+retval=sin(2*pi*power(t,2)*2300);
 endfunction

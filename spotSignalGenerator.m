@@ -9,6 +9,8 @@ f0=12000;
 f1=18000;
 k=(f1-f0)/(10/1000);
 
+control=[1,0,0];
+
 radian=[0];
 radius=[50];
 
@@ -39,14 +41,13 @@ zeros(1,ceil(150*comSampling/1000-1))
 
 
 for k=1:length(pilot(1,:))
-  if pilot(1,k)>=3/1000&&pilot(1,k)<=13/1000
-  pilot(1,k)=2*amplitude*chirp2(pilot(1,k),f0,f1,10/1000);
+  if pilot(1,k)>=3/1000&&pilot(1,k)<=7/1000
+  pilot(1,k)=amplitude*syncpattern(15750,16250,pilot(1,k),0,0);
 else
   pilot(1,k)=0;
 endif
 endfor
 pilot=[pilot;pilot(1,:)];
-disp(size(pilot));
 
 ts=zeros(length(radian),length(radius),size(Tx)(1));
 for k=1:length(radian)
@@ -64,7 +65,7 @@ for k=1:size(Tx)(1)
   for l=1:SymNum
     for kk=1+round((l-1)*150*comSampling/1000):round(l*150*comSampling/1000)
       if mod(1000*tmp(kk),150) > 3 - theta(l)/pi - 1000*ts(k) && mod(1000*tmp(kk),150) < 7 - theta(l)/pi - 1000*ts(k)
-        tmp(kk) = amplitude2(k)*syncpattern(freq(1),freq(2),tmp(kk),theta(l),psi(l));
+        tmp(kk) = amplitude2(k)*syncpattern(freq(1),freq(2),tmp(kk),theta(l),control(k)*psi(l));
       else
         tmp(kk) = 0;
       endif

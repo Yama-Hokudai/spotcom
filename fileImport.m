@@ -1,7 +1,8 @@
 sampling = 48000;
-reclength = 205;
+reclength = 210;
 dirname = '../';
 rootname = ["center_0";"right_0";"left_0"];
+%rootname = ["center0";"right0";"left0"];
 extension = '.wav';
 
 % data = [];
@@ -19,8 +20,8 @@ extension = '.wav';
 data = [];
 for k = 1:3
   for l = 1:3
-    filename = strcat(dirname,rootname(l,:),num2str(k),extension);
-    tmp = audioread(filename)(5*sampling:(reclength+5)*sampling - 1,1);
+    filename = strcat(dirname,dirname2,rootname(k,:),num2str(l),extension);
+    tmp = audioread(filename)(1:reclength*sampling - 1,1);
     data = [data;tmp'];
   endfor
 endfor
