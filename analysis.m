@@ -33,7 +33,7 @@ index = round(index)+ts;
 phi1=zeros(9,10);
 phi2=zeros(9,10);
 amp1=zeros(9,10);
-amp2=zeros(9,10);
+amp2=zeros(9,10); 
 
 for k=1:10
   window=[];

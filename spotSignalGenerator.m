@@ -1,6 +1,6 @@
 sampling=524288;
 amplitude=floor((power(2,16) - 1) / 4);
-amplitude2=[amplitude/2,amplitude,amplitude];
+amplitude2=[amplitude/2,amplitude,0];
 comSampling=sampling/2;
 c=34000;
 M=6;
@@ -21,7 +21,7 @@ for k=1:length(radian)
   endfor
 endfor
 
-Tx=[-20,0;20,0;20,0];
+Tx=[-10,0;10,0;-10,0];
 freq=[18750,19250];
 
 psi=psiList(SymNum);
@@ -36,7 +36,7 @@ endfor
 
 pilot=[
 0:1/comSampling:150/1000-1/comSampling;
-zeros(1,ceil(150*comSampling/1000-1))
+zeros(1,ceil(150*comSampling/1000-1));
 ];
 
 
@@ -48,6 +48,7 @@ else
 endif
 endfor
 pilot=[pilot;pilot(1,:)];
+
 
 ts=zeros(length(radian),length(radius),size(Tx)(1));
 for k=1:length(radian)
